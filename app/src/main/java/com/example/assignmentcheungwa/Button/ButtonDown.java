@@ -30,7 +30,7 @@ public class ButtonDown {
         btnDown = Bitmap.createScaledBitmap(btnDown, width, height, true);
 
         x = 200;
-        y = screenY / 20 * 15;
+        y = screenY / 20 * 16;
 
     }
 }

@@ -5,22 +5,25 @@ import static com.example.assignmentcheungwa.GameView.screenRatioX;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.widget.Space;
+import android.graphics.Rect;
 
 import com.example.assignmentcheungwa.R;
 
-public class Laser {
+import java.util.Random;
 
-    public int x;
-    public int y;
-    public int width;
-    public int height;
+public class Laser{
+
+    public int x , y;
+    public int width,height;
     public Bitmap laser;
     public Laser(Resources res) {
         laser = BitmapFactory.decodeResource(res, R.drawable.laser);
 
-        width = laser.getWidth() / 2;
-        height = laser.getHeight() / 2;
+        width = laser.getWidth();
+        height = laser.getHeight();
+
+        width /= 2;
+        height /= 2;
 
         laser = Bitmap.createScaledBitmap(laser, width, height, true);
     }
@@ -29,11 +32,7 @@ public class Laser {
         return laser;
     }
 
-    public int getX(){
-        return x;
-    }
-
-    public int getY(){
-        return y;
+    public Rect getCollisionShape(){
+        return new Rect(x, y, x+ width, y+ height);
     }
 }

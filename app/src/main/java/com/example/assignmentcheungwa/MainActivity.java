@@ -1,5 +1,7 @@
 package com.example.assignmentcheungwa;
 
+import static com.example.assignmentcheungwa.GameView.score;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,15 +14,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
     TextView tvStart,tvContent,tvQuit,tvScores;
     ImageButton btnUnMute;
     MediaPlayer mediaPlayer;
     public boolean mute = false;
     public int HighestScore = 0;
-    public int currentScore;
+
+    private static final int REQUEST_CODE  = 1111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
         tvStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, GameActivity.class));
+                Intent i = new Intent(MainActivity.this, GameActivity.class);
+                startActivity(i);
             }
         });
 
@@ -84,10 +88,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         tvScores.setText(""+ HighestScore);
-        if(currentScore > HighestScore)
-        {
-            currentScore = HighestScore;
-        }
+        final SharedPreferences prefs = getSharedPreferences("game", MODE_PRIVATE);
+        tvScores.setText("" + prefs.getInt("HighestScore", 0));
     }
 
     @Override

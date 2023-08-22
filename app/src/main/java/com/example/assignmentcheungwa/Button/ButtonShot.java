@@ -33,6 +33,6 @@ public class ButtonShot {
         btnShot = Bitmap.createScaledBitmap(btnShot, width , height , true);
 
         x = screenX / 20 * 18;
-        y = screenY / 20 * 15;
+        y = screenY / 20 * 16;
     }
 }

@@ -1,42 +1,54 @@
 package com.example.assignmentcheungwa;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import static com.example.assignmentcheungwa.GameView.score;
+
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
-import com.example.assignmentcheungwa.Button.ButtonDown;
-import com.example.assignmentcheungwa.Button.ButtonUp;
-import com.example.assignmentcheungwa.GameObject.SpaceShip;
+import java.util.zip.Deflater;
 
 public class GameActivity extends AppCompatActivity {
     private GameView gameView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
         gameView = new GameView(this, point.x, point.y);
-
         setContentView(gameView);
-        while (GameView.alive == false){
-            startActivity(new Intent(GameActivity.this, GameOver.class));
+
+
+    }
+    protected void onStart() {
+        super.onStart();
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        WindowInsetsControllerCompat wic = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+        if(wic != null)
+        {
+            wic.hide(WindowInsetsCompat.Type.statusBars());
+            wic.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
         }
+
     }
 
     @Override
-    protected void onPause(){
-        super.onPause();
-        gameView.pause();
+    protected void onStop() {
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), true);
+        new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView()).show(WindowInsetsCompat.Type.systemBars());
+        super.onStop();
     }
-    @Override
-    protected void onResume(){
-        super.onResume();
-        gameView.resume();
-    }
+
 }

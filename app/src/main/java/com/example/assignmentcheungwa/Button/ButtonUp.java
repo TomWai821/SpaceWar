@@ -32,6 +32,6 @@ public class ButtonUp {
         btnUp = Bitmap.createScaledBitmap(btnUp, width, height, false);
 
         x = 0;
-        y = screenY / 20 * 15;
+        y = screenY / 20 * 16;
     }
 }
