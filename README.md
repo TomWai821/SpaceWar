@@ -41,7 +41,7 @@ To set up SpaceWar locally, follow these steps:
 ## License
 MIT License
 
-Copyright (c) 2025 TomWai821
+Copyright (c) 2024 TomWai821
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
